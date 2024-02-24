@@ -1,22 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-export default function Square({ styles }: { styles: any }) {
-  const [borderColor, setBorderColor] = useState('');
-  const [hoverColor, setHoverColor] = useState('');
+export default function Square({
+  letter,
+  styles,
+}: {
+  letter: string;
+  styles: any;
+}) {
   const [animated, setAnimated] = useState(false);
-  useEffect(() => {
-    const { borderColor, hoverColor } = styles;
-    setBorderColor(borderColor);
-    setHoverColor(hoverColor);
-  }, [styles]);
+  const { backgroundColor } = styles;
 
   return (
     <div
-      className={`size-10 border-2 ${borderColor} ${hoverColor} ${
+      className={`size-10 ${backgroundColor} ${
         animated ? 'animate-boxBounce' : ''
       }`}
       onMouseEnter={() => setAnimated(true)}
       onAnimationEnd={() => setAnimated(false)}
-    ></div>
+    >
+      {letter}
+    </div>
   );
 }
