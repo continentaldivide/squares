@@ -12,7 +12,7 @@ export default function Square({
 
   return (
     <div
-      className={`size-10 ${backgroundColor} ${
+      className={`flex justify-center items-center size-12 text-2xl ${backgroundColor} ${
         animated ? 'animate-boxBounce' : ''
       }`}
       onMouseEnter={() => setAnimated(true)}

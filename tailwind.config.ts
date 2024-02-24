@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       animation: {
-        boxBounce: 'boxBounce .5s ease-out',
+        boxBounce: 'boxBounce .3s ease-out',
       },
       keyframes: {
         boxBounce: {
