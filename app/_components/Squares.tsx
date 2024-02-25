@@ -30,7 +30,7 @@ export default function Squares() {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div className="flex justify-center gap-2">{squareComponents}</div>
+      <div className="flex justify-center gap-2 min-h-12">{squareComponents}</div>
       <button
         className="w-48 h-10 text-lg rounded-lg bg-gray-500 hover:bg-gray-600 active:bg-gray-700 mt-4"
         onClick={() => setSquares([])}
