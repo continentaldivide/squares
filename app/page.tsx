@@ -1,12 +1,10 @@
 'use client';
-import Squares from './_components/Squares';
-import WordBlock from './_components/WordBlock';
+import Game from './_components/Game';
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen">
-      <WordBlock length={3} />
-      <Squares />
+    <main className="flex items-center justify-center min-h-screen">
+      <Game />
     </main>
   );
 }
