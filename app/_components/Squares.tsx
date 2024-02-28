@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Square from './Square';
 import useGenerateSquare from '../_hooks/useGenerateSquare';
 import useGenerateAlphabet from '../_hooks/useGenerateAlphabet';
-import GameStateType from '../_interfaces/GameState.interface';
 
 type Square = {
   letter: string;
@@ -10,11 +9,7 @@ type Square = {
   styles: any;
 };
 
-type Props = {
-  setGameState: React.Dispatch<React.SetStateAction<GameStateType>>;
-};
-
-export default function Squares({ setGameState }: Props) {
+export default function Squares() {
   const [squares, setSquares] = useState<Square[]>([]);
   const alphabet = useGenerateAlphabet();
 

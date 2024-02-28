@@ -1,7 +1,10 @@
-export default function WordBlock({ length }: { length: number }) {
-  const spaces = [];
+import { useGameStateContext } from '../_context/GameStateContext';
 
-  for (let i = 0; i < length; i++) {
+export default function WordBlock() {
+  const spaces = [];
+  const { wordBlockLength } = useGameStateContext();
+
+  for (let i = 0; i < wordBlockLength; i++) {
     const space = (
       <div
         className="size-12 border-2 border-teal-800"
