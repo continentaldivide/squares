@@ -38,3 +38,19 @@ export function useGameStateContext() {
   }
   return gameState;
 }
+
+export function useGameStateValue() {
+  const stateAndDispatch = useContext(GameStateContext);
+  if (!stateAndDispatch) {
+    throw new Error('Context must be used within a Provider');
+  }
+  return stateAndDispatch[0];
+}
+
+export function useGameStateDispatch() {
+  const stateAndDispatch = useContext(GameStateContext);
+  if (!stateAndDispatch) {
+    throw new Error('Context must be used within a Provider');
+  }
+  return stateAndDispatch[1];
+}
