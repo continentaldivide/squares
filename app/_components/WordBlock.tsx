@@ -1,8 +1,13 @@
 export default function WordBlock({ length }: { length: number }) {
   const spaces = [];
-  const space = <div className="size-12 border-2 border-teal-800"></div>;
 
   for (let i = 0; i < length; i++) {
+    const space = (
+      <div
+        className="size-12 border-2 border-teal-800"
+        key={`block ${i}`}
+      ></div>
+    );
     spaces.push(space);
   }
 
