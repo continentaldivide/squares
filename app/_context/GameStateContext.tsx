@@ -1,9 +1,12 @@
 import { createContext, useContext, useReducer, ReactNode } from 'react';
 import GameStateType from '../_interfaces/GameState.interface';
+import GameActionsType from '../_interfaces/GameActions.interface';
 
-const GameStateContext = createContext<any>(null);
+const GameStateContext = createContext<
+  [GameStateType, React.Dispatch<GameActionsType>] | undefined
+>(undefined);
 
-const gameStateReducer = (state: GameStateType, action: any) => {
+const gameStateReducer = (state: GameStateType, action: GameActionsType) => {
   switch (action.type) {
     case 'increase word block':
       return {
