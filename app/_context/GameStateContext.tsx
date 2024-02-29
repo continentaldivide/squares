@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer, ReactNode } from 'react';
 import GameStateType from '../_interfaces/GameState.interface';
-import GameActionsType from '../_interfaces/GameActions.interface';
+import { GameActionsType } from '../_interfaces/GameActions.interface';
 
 const GameStateContext = createContext<
   [GameStateType, React.Dispatch<GameActionsType>] | undefined
@@ -13,12 +13,23 @@ const gameStateReducer = (state: GameStateType, action: GameActionsType) => {
         ...state,
         wordBlockLength: state.wordBlockLength + 1,
       };
+    case 'add square':
+      return {
+        ...state,
+        availableSquares: [...state.availableSquares, action.squarePayload],
+      };
+    case 'reset squares':
+      return {
+        ...state,
+        availableSquares: action.squarePayload,
+      };
     default:
       return state;
   }
 };
 
 const initialState: GameStateType = {
+  availableSquares: [],
   selectedSquares: [],
   wordBlockLength: 3,
 };

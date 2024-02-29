@@ -1,26 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Square from './Square';
 import useGenerateSquare from '../_hooks/useGenerateSquare';
 import useGenerateAlphabet from '../_hooks/useGenerateAlphabet';
-
-type Square = {
-  letter: string;
-  color: string;
-  styles: any;
-};
+import { useGameStateContext } from '../_context/GameStateContext';
 
 export default function Squares() {
-  const [squares, setSquares] = useState<Square[]>([]);
+  const [gameState, gameStateDispatch] = useGameStateContext();
   const alphabet = useGenerateAlphabet();
 
   useEffect(() => {
-    if (squares.length < 5) {
+    if (gameState.availableSquares.length < 5) {
       const newSquare = useGenerateSquare(alphabet);
-      setSquares([...squares, newSquare]);
+      gameStateDispatch({ type: 'add square', squarePayload: newSquare });
     }
-  }, [squares]);
+  }, [gameState.availableSquares]);
 
-  const squareComponents = squares.map((square, i) => {
+  const squareComponents = gameState.availableSquares.map((square, i) => {
     return (
       <Square
         letter={square.letter}
@@ -37,7 +32,9 @@ export default function Squares() {
       </div>
       <button
         className="w-48 h-10 text-lg rounded-lg bg-gray-500 hover:bg-gray-600 active:bg-gray-700 mt-4"
-        onClick={() => setSquares([])}
+        onClick={() =>
+          gameStateDispatch({ type: 'reset squares', squarePayload: [] })
+        }
       >
         generate squares
       </button>
