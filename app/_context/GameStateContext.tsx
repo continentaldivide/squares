@@ -18,15 +18,20 @@ const gameStateReducer = (state: GameStateType, action: GameActionsType) => {
   }
 };
 
+const initialState: GameStateType = {
+  selectedSquares: [],
+  wordBlockLength: 3,
+};
+
 export function GameStateContextProvider({
   children,
 }: {
   children: ReactNode;
 }) {
-  const [gameState, gameStateDispatch] = useReducer(gameStateReducer, {
-    selectedSquares: [],
-    wordBlockLength: 3,
-  });
+  const [gameState, gameStateDispatch] = useReducer(
+    gameStateReducer,
+    initialState
+  );
   return (
     <GameStateContext.Provider value={[gameState, gameStateDispatch]}>
       {children}
@@ -35,11 +40,11 @@ export function GameStateContextProvider({
 }
 
 export function useGameStateContext() {
-  const gameState = useContext(GameStateContext);
-  if (!gameState) {
+  const stateAndDispatch = useContext(GameStateContext);
+  if (!stateAndDispatch) {
     throw new Error('Context must be used within a Provider');
   }
-  return gameState;
+  return stateAndDispatch;
 }
 
 export function useGameStateValue() {
