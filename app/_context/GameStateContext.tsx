@@ -6,7 +6,10 @@ const GameStateContext = createContext<
   [GameStateType, React.Dispatch<GameActionsType>] | undefined
 >(undefined);
 
-const gameStateReducer = (state: GameStateType, action: GameActionsType) => {
+const gameStateReducer: (
+  state: GameStateType,
+  action: GameActionsType
+) => GameStateType = (state, action) => {
   switch (action.type) {
     case 'increase word block':
       return {
