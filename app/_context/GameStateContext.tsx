@@ -29,12 +29,17 @@ const gameStateReducer: (
       return {
         ...state,
         availableSquares: action.squarePayload,
+        selectedSquares: []
       };
     case 'select square':
       const squareAlreadySelected = state.selectedSquares.includes(
         action.payload
       );
+      const wordBlockIsFull =
+        state.wordBlockLength <= state.selectedSquares.length;
       if (squareAlreadySelected) {
+        return state;
+      } else if (wordBlockIsFull) {
         return state;
       }
       return {
