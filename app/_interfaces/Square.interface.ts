@@ -1,5 +1,5 @@
 export default interface SquareType {
   letter: string;
   color: string;
-  styles: { backgroundColor: string };
+  styles: { backgroundColor: string; opacity: string };
 }

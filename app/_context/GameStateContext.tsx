@@ -20,17 +20,20 @@ const gameStateReducer: (
         ...state,
         wordBlockLength: state.wordBlockLength + 1,
       };
+
     case 'add square':
       return {
         ...state,
         availableSquares: [...state.availableSquares, action.squarePayload],
       };
+
     case 'reset squares':
       return {
         ...state,
         availableSquares: action.squarePayload,
-        selectedSquares: []
+        selectedSquares: [],
       };
+
     case 'select square':
       const squareAlreadySelected = state.selectedSquares.includes(
         action.payload
@@ -45,6 +48,17 @@ const gameStateReducer: (
       return {
         ...state,
         selectedSquares: [...state.selectedSquares, action.payload],
+
+        // change the styles prop of the square being selected to reduce its opacity
+        availableSquares: state.availableSquares.map((square, i) => {
+          if (i === action.payload) {
+            return {
+              ...square,
+              styles: { ...square.styles, opacity: 'opacity-50' },
+            };
+          }
+          return square;
+        }),
       };
     default:
       return state;
