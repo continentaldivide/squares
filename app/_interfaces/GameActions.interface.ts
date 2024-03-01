@@ -14,7 +14,13 @@ interface resetAvailableSquares {
   squarePayload: SquareType[];
 }
 
+interface selectSquare {
+  type: 'select square';
+  payload: number;
+}
+
 export type GameActionsType =
   | increaseWordBlock
   | addAvailableSquare
-  | resetAvailableSquares;
+  | resetAvailableSquares
+  | selectSquare;

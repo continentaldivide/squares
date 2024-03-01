@@ -26,6 +26,17 @@ const gameStateReducer: (
         ...state,
         availableSquares: action.squarePayload,
       };
+    case 'select square':
+      const squareAlreadySelected = state.selectedSquares.includes(
+        action.payload
+      );
+      if (squareAlreadySelected) {
+        return state;
+      }
+      return {
+        ...state,
+        selectedSquares: [...state.selectedSquares, action.payload],
+      };
     default:
       return state;
   }

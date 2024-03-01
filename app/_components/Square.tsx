@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import SquareType from '../_interfaces/Square.interface';
+import { useGameStateContext } from '../_context/GameStateContext';
 
 export default function Square({
-  letter,
-  styles,
+  square,
+  position,
 }: {
-  letter: string;
-  styles: any;
+  square: SquareType;
+  position: number;
 }) {
   const [animated, setAnimated] = useState(false);
-  const { backgroundColor } = styles;
+  const [gameState, gameStateDispatch] = useGameStateContext();
+  const { backgroundColor } = square.styles;
+  const letter = square.letter;
 
   return (
     <div
@@ -17,6 +21,9 @@ export default function Square({
       }`}
       onMouseEnter={() => setAnimated(true)}
       onAnimationEnd={() => setAnimated(false)}
+      onClick={() =>
+        gameStateDispatch({ type: 'select square', payload: position })
+      }
     >
       {letter}
     </div>
