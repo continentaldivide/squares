@@ -2,7 +2,7 @@ import { useGameStateContext } from '../_context/GameStateContext';
 
 export default function WordBlock() {
   const spaces = [];
-  const [gameState, gameStateDispatch] = useGameStateContext();
+  const { gameState, gameStateDispatch } = useGameStateContext();
 
   for (let i = 0; i < gameState.wordBlockLength; i++) {
     const space = (

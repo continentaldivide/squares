@@ -5,7 +5,7 @@ import useGenerateAlphabet from '../_hooks/useGenerateAlphabet';
 import { useGameStateContext } from '../_context/GameStateContext';
 
 export default function Squares() {
-  const [gameState, gameStateDispatch] = useGameStateContext();
+  const { gameState, gameStateDispatch } = useGameStateContext();
   const alphabet = useGenerateAlphabet();
 
   useEffect(() => {

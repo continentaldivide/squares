@@ -3,7 +3,11 @@ import GameStateType from '../_interfaces/GameState.interface';
 import { GameActionsType } from '../_interfaces/GameActions.interface';
 
 const GameStateContext = createContext<
-  [GameStateType, React.Dispatch<GameActionsType>] | undefined
+  | {
+      gameState: GameStateType;
+      gameStateDispatch: React.Dispatch<GameActionsType>;
+    }
+  | undefined
 >(undefined);
 
 const gameStateReducer: (
@@ -58,7 +62,7 @@ export function GameStateContextProvider({
     initialState
   );
   return (
-    <GameStateContext.Provider value={[gameState, gameStateDispatch]}>
+    <GameStateContext.Provider value={{ gameState, gameStateDispatch }}>
       {children}
     </GameStateContext.Provider>
   );
@@ -70,20 +74,4 @@ export function useGameStateContext() {
     throw new Error('Context must be used within a Provider');
   }
   return stateAndDispatch;
-}
-
-export function useGameStateValue() {
-  const stateAndDispatch = useContext(GameStateContext);
-  if (!stateAndDispatch) {
-    throw new Error('Context must be used within a Provider');
-  }
-  return stateAndDispatch[0];
-}
-
-export function useGameStateDispatch() {
-  const stateAndDispatch = useContext(GameStateContext);
-  if (!stateAndDispatch) {
-    throw new Error('Context must be used within a Provider');
-  }
-  return stateAndDispatch[1];
 }

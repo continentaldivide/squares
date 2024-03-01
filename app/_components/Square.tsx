@@ -10,7 +10,7 @@ export default function Square({
   position: number;
 }) {
   const [animated, setAnimated] = useState(false);
-  const [gameState, gameStateDispatch] = useGameStateContext();
+  const { gameStateDispatch } = useGameStateContext();
   const { backgroundColor } = square.styles;
   const letter = square.letter;
 
