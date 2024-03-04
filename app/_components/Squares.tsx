@@ -17,7 +17,12 @@ export default function Squares() {
 
   const squareComponents = gameState.availableSquares.map((square, i) => {
     return (
-      <Square square={square} position={i} key={`square component ${i}`} />
+      <Square
+        square={square}
+        position={i}
+        insideWordBlock={false}
+        key={`square component ${i}`}
+      />
     );
   });
 

@@ -10,7 +10,12 @@ export default function WordBlock() {
     const selectedSquareIndex = gameState.selectedSquares[i];
     const square = gameState.availableSquares[selectedSquareIndex];
     const selectedSquare = (
-      <Square square={square} position={i} key={`square component ${i}`} />
+      <Square
+        square={square}
+        position={i}
+        insideWordBlock={true}
+        key={`square component ${i}`}
+      />
     );
     spaces.push(selectedSquare);
   }
