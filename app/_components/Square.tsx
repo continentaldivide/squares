@@ -10,7 +10,7 @@ export default function Square({
   position: number;
 }) {
   const [animated, setAnimated] = useState(false);
-  const { gameStateDispatch } = useGameStateContext();
+  const { gameState, gameStateDispatch } = useGameStateContext();
   const { backgroundColor, opacity } = square.styles;
   const letter = square.letter;
 
@@ -21,8 +21,14 @@ export default function Square({
       }`}
       onMouseEnter={() => setAnimated(true)}
       onAnimationEnd={() => setAnimated(false)}
-      onClick={() =>
-        gameStateDispatch({ type: 'select square', payload: position })
+      onClick={
+        gameState.selectedSquares.includes(position)
+          ? () => {
+              gameStateDispatch({ type: 'deselect square', payload: position });
+            }
+          : () => {
+              gameStateDispatch({ type: 'select square', payload: position });
+            }
       }
     >
       {letter}

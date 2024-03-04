@@ -34,13 +34,13 @@ const gameStateReducer: (
         selectedSquares: [],
       };
 
-    case 'select square':
-      const squareAlreadySelected = state.selectedSquares.includes(
+    case 'select square': {
+      const clickedSquareIsSelected = state.selectedSquares.includes(
         action.payload
       );
       const wordBlockIsFull =
         state.wordBlockLength <= state.selectedSquares.length;
-      if (squareAlreadySelected) {
+      if (clickedSquareIsSelected) {
         return state;
       } else if (wordBlockIsFull) {
         return state;
@@ -60,6 +60,34 @@ const gameStateReducer: (
           return square;
         }),
       };
+    }
+
+    case 'deselect square': {
+      const clickedSquareIsSelected = state.selectedSquares.includes(
+        action.payload
+      );
+      const clickedSquarePosition = state.selectedSquares.indexOf(
+        action.payload
+      );
+      const arrayWithoutClickedSquare = state.selectedSquares.toSpliced(
+        clickedSquarePosition,
+        1
+      );
+      if (clickedSquareIsSelected) {
+        return {
+          ...state,
+          selectedSquares: arrayWithoutClickedSquare,
+          // change the styles prop of all available squares back to normal opacity
+          availableSquares: state.availableSquares.map((square) => {
+            return {
+              ...square,
+              styles: { ...square.styles, opacity: 'opacity-100' },
+            };
+          }),
+        };
+      }
+      return state;
+    }
     default:
       return state;
   }

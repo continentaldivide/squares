@@ -19,8 +19,14 @@ interface selectSquare {
   payload: number;
 }
 
+interface deselectSquare {
+  type: 'deselect square';
+  payload: number;
+}
+
 export type GameActionsType =
   | increaseWordBlock
   | addAvailableSquare
   | resetAvailableSquares
-  | selectSquare;
+  | selectSquare
+  | deselectSquare;
