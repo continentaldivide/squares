@@ -77,12 +77,15 @@ const gameStateReducer: (
         return {
           ...state,
           selectedSquares: arrayWithoutClickedSquare,
-          // change the styles prop of all available squares back to normal opacity
-          availableSquares: state.availableSquares.map((square) => {
-            return {
-              ...square,
-              styles: { ...square.styles, opacity: 'opacity-100' },
-            };
+          // set the square being deselected to baseline opacity
+          availableSquares: state.availableSquares.map((square, i) => {
+            if (i === action.payload) {
+              return {
+                ...square,
+                styles: { ...square.styles, opacity: 'opacity-100' },
+              };
+            }
+            return square;
           }),
         };
       }
