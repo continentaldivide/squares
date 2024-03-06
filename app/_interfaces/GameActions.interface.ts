@@ -29,10 +29,15 @@ interface switchView {
   view: 'main game' | 'charm select';
 }
 
+interface increaseLevel {
+  type: 'increase level';
+}
+
 export type GameActionsType =
   | increaseWordBlock
   | addAvailableSquare
   | resetAvailableSquares
   | selectSquare
   | deselectSquare
-  | switchView;
+  | switchView
+  | increaseLevel;

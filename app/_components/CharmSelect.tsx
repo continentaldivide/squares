@@ -7,9 +7,7 @@ export default function CharmSelect() {
       <p>this is the charm select screen. NYI.</p>
       <button
         className="rounded-md p-2 bg-cyan-700"
-        onClick={() =>
-          gameStateDispatch({ type: 'switch view', view: 'main game' })
-        }
+        onClick={() => gameStateDispatch({ type: 'increase level' })}
       >
         continue
       </button>

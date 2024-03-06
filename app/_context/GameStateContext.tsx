@@ -97,6 +97,17 @@ const gameStateReducer: (
         ...state,
         currentView: action.view,
       };
+
+    case 'increase level':
+      const newLevelNumber = state.levelNumber++;
+      const newWordBlockLength = state.wordBlockLength++;
+      return {
+        ...state,
+        availableSquares: [],
+        wordBlockLength: newWordBlockLength,
+        currentView: 'main game',
+        levelNumber: newLevelNumber,
+      };
     default:
       return state;
   }
@@ -108,6 +119,7 @@ const initialState: GameStateType = {
   selectedSquares: [],
   wordBlockLength: 3,
   currentView: 'main game',
+  levelNumber: 1,
 };
 
 export function GameStateContextProvider({

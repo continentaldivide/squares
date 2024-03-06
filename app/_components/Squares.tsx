@@ -31,14 +31,25 @@ export default function Squares() {
       <div className="flex justify-center gap-2 min-h-12">
         {squareComponents}
       </div>
-      <button
-        className="mt-2 p-2 rounded-lg bg-gray-500 hover:bg-gray-600 active:bg-gray-700"
-        onClick={() =>
-          gameStateDispatch({ type: 'reset squares', squarePayload: [] })
-        }
-      >
-        <img src="reroll.svg"></img>
-      </button>
+      <div className="flex gap-2">
+        <button
+          className="mt-2 p-2 rounded-lg bg-gray-500 hover:bg-gray-600 active:bg-gray-700"
+          onClick={() =>
+            gameStateDispatch({ type: 'reset squares', squarePayload: [] })
+          }
+        >
+          <img src="reroll.svg"></img>
+        </button>
+        <button
+          className="mt-2 p-2 rounded-lg bg-gray-500 hover:bg-gray-600 active:bg-gray-700"
+          onClick={() =>
+            gameStateDispatch({ type: 'switch view', view: 'charm select' })
+          }
+        >
+          check
+          <img src="reroll.svg"></img>
+        </button>
+      </div>
     </div>
   );
 }
