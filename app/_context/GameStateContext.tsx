@@ -98,6 +98,7 @@ const gameStateReducer: (
 
 const initialState: GameStateType = {
   availableSquares: [],
+  availableSquareNumber: 7,
   selectedSquares: [],
   wordBlockLength: 3,
 };

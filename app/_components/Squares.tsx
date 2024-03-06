@@ -9,7 +9,7 @@ export default function Squares() {
   const alphabet = useGenerateAlphabet();
 
   useEffect(() => {
-    if (gameState.availableSquares.length < 5) {
+    if (gameState.availableSquares.length < gameState.availableSquareNumber) {
       const newSquare = useGenerateSquare(alphabet);
       gameStateDispatch({ type: 'add square', squarePayload: newSquare });
     }
@@ -32,12 +32,12 @@ export default function Squares() {
         {squareComponents}
       </div>
       <button
-        className="w-48 h-10 text-lg rounded-lg bg-gray-500 hover:bg-gray-600 active:bg-gray-700 mt-4"
+        className="mt-2 p-2 rounded-lg bg-gray-500 hover:bg-gray-600 active:bg-gray-700"
         onClick={() =>
           gameStateDispatch({ type: 'reset squares', squarePayload: [] })
         }
       >
-        generate squares
+        <img src="reroll.svg"></img>
       </button>
     </div>
   );
