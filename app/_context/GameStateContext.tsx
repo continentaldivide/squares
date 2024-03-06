@@ -99,6 +99,7 @@ const gameStateReducer: (
       return {
         ...state,
         availableSquares: [],
+        selectedSquares: [],
         wordBlockLength: newWordBlockLength,
         currentView: 'main game',
         levelNumber: newLevelNumber,
