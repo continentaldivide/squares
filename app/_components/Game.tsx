@@ -1,14 +1,17 @@
 import WordBlock from './WordBlock';
 import Squares from './Squares';
-import { GameStateContextProvider } from '../_context/GameStateContext';
+import CharmSelect from './CharmSelect';
+import { useGameStateContext } from '../_context/GameStateContext';
 
 export default function Game() {
-  return (
-    <GameStateContextProvider>
-      <div className="flex flex-col items-center">
-        <WordBlock />
-        <Squares />
-      </div>
-    </GameStateContextProvider>
+  const { gameState } = useGameStateContext();
+  console.log(gameState);
+  return gameState.currentView === 'main game' ? (
+    <div className="flex flex-col items-center">
+      <WordBlock />
+      <Squares />
+    </div>
+  ) : (
+    <CharmSelect />
   );
 }

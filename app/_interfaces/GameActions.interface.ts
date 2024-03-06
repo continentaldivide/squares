@@ -24,9 +24,15 @@ interface deselectSquare {
   payload: number;
 }
 
+interface switchView {
+  type: 'switch view';
+  view: 'main game' | 'charm select';
+}
+
 export type GameActionsType =
   | increaseWordBlock
   | addAvailableSquare
   | resetAvailableSquares
   | selectSquare
-  | deselectSquare;
+  | deselectSquare
+  | switchView;

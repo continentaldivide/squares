@@ -91,6 +91,12 @@ const gameStateReducer: (
       }
       return state;
     }
+
+    case 'switch view':
+      return {
+        ...state,
+        currentView: action.view,
+      };
     default:
       return state;
   }
@@ -101,6 +107,7 @@ const initialState: GameStateType = {
   availableSquareNumber: 7,
   selectedSquares: [],
   wordBlockLength: 3,
+  currentView: 'main game',
 };
 
 export function GameStateContextProvider({

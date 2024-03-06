@@ -3,3 +3,4 @@ export default interface SquareType {
   color: string;
   styles: { backgroundColor: string; opacity: string };
 }
+ 
