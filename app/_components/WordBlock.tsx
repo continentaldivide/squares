@@ -12,7 +12,7 @@ export default function WordBlock() {
     const selectedSquare = (
       <Square
         square={square}
-        position={i}
+        squareIndex={i}
         insideWordBlock={true}
         key={`square component ${i}`}
       />

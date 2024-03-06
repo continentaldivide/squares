@@ -4,11 +4,11 @@ import { useGameStateContext } from '../_context/GameStateContext';
 
 export default function Square({
   square,
-  position,
+  squareIndex,
   insideWordBlock,
 }: {
   square: SquareType;
-  position: number;
+  squareIndex: number;
   insideWordBlock: boolean;
 }) {
   const [animated, setAnimated] = useState(false);
@@ -25,12 +25,15 @@ export default function Square({
       onMouseEnter={() => setAnimated(true)}
       onAnimationEnd={() => setAnimated(false)}
       onClick={
-        gameState.selectedSquares.includes(position)
+        gameState.selectedSquares.includes(squareIndex)
           ? () => {
-              gameStateDispatch({ type: 'deselect square', payload: position });
+              gameStateDispatch({
+                type: 'deselect square',
+                squareIndex,
+              });
             }
           : () => {
-              gameStateDispatch({ type: 'select square', payload: position });
+              gameStateDispatch({ type: 'select square', squareIndex });
             }
       }
     >

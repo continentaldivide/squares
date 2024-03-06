@@ -15,43 +15,38 @@ const gameStateReducer: (
   action: GameActionsType
 ) => GameStateType = (state, action) => {
   switch (action.type) {
-    case 'increase word block':
-      return {
-        ...state,
-        wordBlockLength: state.wordBlockLength + 1,
-      };
-
     case 'add square':
+      // assumptions: situation-agnostic action that receives a Square obj and adds it to availableSquares.  used in Squares.tsx whenever there are fewer squares than availableSquareNumber
       return {
         ...state,
-        availableSquares: [...state.availableSquares, action.squarePayload],
+        availableSquares: [...state.availableSquares, action.newSquare],
       };
 
     case 'reset squares':
+      // assumptions: sets available squares to 0 which prompts a 'refill' up to availableSquareNumber via component logic.  used when player chooses to manually reset squares as well as on starting a new level
       return {
         ...state,
-        availableSquares: action.squarePayload,
+        availableSquares: [],
         selectedSquares: [],
       };
 
     case 'select square': {
+      // assumptions: 'selects' a square (i.e., puts it in the wordblock as part of composing a word).  checks whether clicked square is already selected and whether wordblock is full of already-selected squares.
       const clickedSquareIsSelected = state.selectedSquares.includes(
-        action.payload
+        action.squareIndex
       );
       const wordBlockIsFull =
         state.wordBlockLength <= state.selectedSquares.length;
-      if (clickedSquareIsSelected) {
-        return state;
-      } else if (wordBlockIsFull) {
+      if (clickedSquareIsSelected || wordBlockIsFull) {
         return state;
       }
       return {
         ...state,
-        selectedSquares: [...state.selectedSquares, action.payload],
+        selectedSquares: [...state.selectedSquares, action.squareIndex],
 
         // change the styles prop of the square being selected to reduce its opacity
         availableSquares: state.availableSquares.map((square, i) => {
-          if (i === action.payload) {
+          if (i === action.squareIndex) {
             return {
               ...square,
               styles: { ...square.styles, opacity: 'opacity-50' },
@@ -63,42 +58,42 @@ const gameStateReducer: (
     }
 
     case 'deselect square': {
+      // assumptions: 'deselects' a square (i.e., removes it from the wordblock).  confirms whether clicked square is in fact selected.
       const clickedSquareIsSelected = state.selectedSquares.includes(
-        action.payload
+        action.squareIndex
       );
-      const clickedSquarePosition = state.selectedSquares.indexOf(
-        action.payload
-      );
-      const arrayWithoutClickedSquare = state.selectedSquares.toSpliced(
-        clickedSquarePosition,
-        1
-      );
-      if (clickedSquareIsSelected) {
-        return {
-          ...state,
-          selectedSquares: arrayWithoutClickedSquare,
-          // set the square being deselected to baseline opacity
-          availableSquares: state.availableSquares.map((square, i) => {
-            if (i === action.payload) {
-              return {
-                ...square,
-                styles: { ...square.styles, opacity: 'opacity-100' },
-              };
-            }
-            return square;
-          }),
-        };
+      if (!clickedSquareIsSelected) {
+        return state;
       }
-      return state;
+      const clickedSquareIndex = state.selectedSquares.indexOf(
+        action.squareIndex
+      );
+      const newArray = state.selectedSquares.toSpliced(clickedSquareIndex, 1);
+      return {
+        ...state,
+        selectedSquares: newArray,
+        // set the square being deselected to baseline opacity
+        availableSquares: state.availableSquares.map((square, i) => {
+          if (i === action.squareIndex) {
+            return {
+              ...square,
+              styles: { ...square.styles, opacity: 'opacity-100' },
+            };
+          }
+          return square;
+        }),
+      };
     }
 
     case 'switch view':
+      // assumptions: this case changes between various 'views' in different parts of the game.  currently this only includes the 'main' view and a between-levels charm selection view.  will be expanded later to include other things like game ending, etc
       return {
         ...state,
         currentView: action.view,
       };
 
     case 'increase level':
+      // assumptions: increasing level entails increasing the size of the wordblock, setting the view to the main game view, and providing a new set of available squares
       const newLevelNumber = state.levelNumber++;
       const newWordBlockLength = state.wordBlockLength++;
       return {

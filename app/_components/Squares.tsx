@@ -11,7 +11,7 @@ export default function Squares() {
   useEffect(() => {
     if (gameState.availableSquares.length < gameState.availableSquareNumber) {
       const newSquare = useGenerateSquare(alphabet);
-      gameStateDispatch({ type: 'add square', squarePayload: newSquare });
+      gameStateDispatch({ type: 'add square', newSquare });
     }
   }, [gameState.availableSquares]);
 
@@ -19,7 +19,7 @@ export default function Squares() {
     return (
       <Square
         square={square}
-        position={i}
+        squareIndex={i}
         insideWordBlock={false}
         key={`square component ${i}`}
       />
@@ -35,7 +35,7 @@ export default function Squares() {
         <button
           className="mt-2 p-2 rounded-lg bg-gray-500 hover:bg-gray-600 active:bg-gray-700"
           onClick={() =>
-            gameStateDispatch({ type: 'reset squares', squarePayload: [] })
+            gameStateDispatch({ type: 'reset squares'})
           }
         >
           <img src="reroll.svg"></img>
