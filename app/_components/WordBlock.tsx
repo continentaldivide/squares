@@ -29,11 +29,6 @@ export default function WordBlock() {
     );
     spaces.push(space);
   }
-  console.log(gameState);
 
-  return (
-    <div className="flex gap-2 min-h-12 mb-10">
-      {spaces}
-    </div>
-  );
+  return <div className="flex gap-2 min-h-12 mb-10">{spaces}</div>;
 }

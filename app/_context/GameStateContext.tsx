@@ -104,6 +104,11 @@ const gameStateReducer: (
         currentView: 'main game',
         levelNumber: newLevelNumber,
       };
+
+    case 'reset game':
+      // assumptions: at the moment, basically just a 'reset button' to use instead of F5 -- later, will be used for starting a new game after game over
+      return initialState;
+
     default:
       return state;
   }

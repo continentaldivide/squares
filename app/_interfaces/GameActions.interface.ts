@@ -28,10 +28,15 @@ interface increaseLevel {
   type: 'increase level';
 }
 
+interface resetGame {
+  type: 'reset game';
+}
+
 export type GameActionsType =
   | addAvailableSquare
   | resetAvailableSquares
   | selectSquare
   | deselectSquare
   | switchView
-  | increaseLevel;
+  | increaseLevel
+  | resetGame;
