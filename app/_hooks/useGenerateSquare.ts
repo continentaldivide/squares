@@ -4,9 +4,9 @@ export default function useGenerateSquare(alphabet: string) {
   const color = colorOptions[Math.floor(colorOptions.length * Math.random())];
   const bgColors: { [key: string]: string } = {
     blue: 'bg-blue-500',
-    red: 'bg-red-500',
-    green: 'bg-green-500',
-    purple: 'bg-purple-500',
+    red: 'bg-rose-500',
+    green: 'bg-emerald-500',
+    purple: 'bg-violet-500',
   };
   const styles = { opacity: 'opacity-100', backgroundColor: bgColors[color] };
   return {

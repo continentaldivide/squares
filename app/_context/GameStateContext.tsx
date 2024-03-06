@@ -49,7 +49,7 @@ const gameStateReducer: (
           if (i === action.squareIndex) {
             return {
               ...square,
-              styles: { ...square.styles, opacity: 'opacity-50' },
+              styles: { ...square.styles, opacity: 'opacity-25' },
             };
           }
           return square;
