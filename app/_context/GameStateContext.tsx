@@ -28,6 +28,7 @@ const gameStateReducer: (
         ...state,
         availableSquares: [],
         selectedSquares: [],
+        currentWord: '',
       };
 
     case 'select square': {
@@ -54,6 +55,8 @@ const gameStateReducer: (
           }
           return square;
         }),
+        currentWord:
+          state.currentWord + state.availableSquares[action.squareIndex].letter,
       };
     }
 
@@ -69,6 +72,9 @@ const gameStateReducer: (
         action.squareIndex
       );
       const newArray = state.selectedSquares.toSpliced(clickedSquareIndex, 1);
+      const newWord =
+        state.currentWord.substring(0, clickedSquareIndex) +
+        state.currentWord.substring(clickedSquareIndex + 1);
       return {
         ...state,
         selectedSquares: newArray,
@@ -82,6 +88,7 @@ const gameStateReducer: (
           }
           return square;
         }),
+        currentWord: newWord,
       };
     }
 
@@ -101,6 +108,7 @@ const gameStateReducer: (
         availableSquares: [],
         selectedSquares: [],
         wordBlockLength: newWordBlockLength,
+        currentWord: '',
         currentView: 'main game',
         levelNumber: newLevelNumber,
       };
@@ -119,6 +127,7 @@ const initialState: GameStateType = {
   availableSquareNumber: 7,
   selectedSquares: [],
   wordBlockLength: 3,
+  currentWord: '',
   currentView: 'main game',
   levelNumber: 1,
 };

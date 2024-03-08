@@ -5,6 +5,7 @@ export default interface GameStateType {
   availableSquareNumber: number;
   selectedSquares: number[];
   wordBlockLength: number;
+  currentWord: string;
   currentView: 'main game' | 'charm select';
   levelNumber: number;
 }
