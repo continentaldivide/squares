@@ -39,9 +39,12 @@ export default function Squares() {
           <img src="reroll.svg"></img>
         </button>
         <button
-          className="mt-2 p-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700"
+          className="mt-2 p-2 rounded-lg bg-emerald-500 enabled:hover:bg-emerald-600 enabled:active:bg-emerald-700 disabled:opacity-25"
           onClick={() =>
             gameStateDispatch({ type: 'switch view', view: 'charm select' })
+          }
+          disabled={
+            gameState.selectedSquares.length < gameState.wordBlockLength
           }
         >
           <img src="check.svg"></img>
