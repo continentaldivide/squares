@@ -41,7 +41,19 @@ export default function Square({
     </div>
   );
 
-  const wordBlockSquare = <div className={baselineClasses}>{letter}</div>;
+  const wordBlockSquare = (
+    <div
+      className={baselineClasses}
+      onClick={() => {
+        gameStateDispatch({
+          type: 'deselect square',
+          squareIndex,
+        });
+      }}
+    >
+      {letter}
+    </div>
+  );
 
   return insideWordBlock ? wordBlockSquare : selectableSquare;
 }

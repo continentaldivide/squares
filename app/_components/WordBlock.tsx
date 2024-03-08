@@ -12,7 +12,8 @@ export default function WordBlock() {
     const selectedSquare = (
       <Square
         square={square}
-        squareIndex={i}
+        // re: squareIndex: this wordBlock version of the sqare needs the 'main' square's squareIndex so that it can be spliced out of selectedSquares by the deselect square reducer function
+        squareIndex={selectedSquareIndex}
         insideWordBlock={true}
         key={`square component ${i}`}
       />
