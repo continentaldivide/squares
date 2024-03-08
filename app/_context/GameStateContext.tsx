@@ -1,6 +1,9 @@
 import { createContext, useContext, useReducer, ReactNode } from 'react';
 import GameStateType from '../_interfaces/GameState.interface';
 import { GameActionsType } from '../_interfaces/GameActions.interface';
+import untypedDictionary from '../../public/dictionary.json';
+
+const dictionary = untypedDictionary as Record<string, string>;
 
 const GameStateContext = createContext<
   | {
@@ -116,6 +119,11 @@ const gameStateReducer: (
     case 'reset game':
       // assumptions: at the moment, basically just a 'reset button' to use instead of F5 -- later, will be used for starting a new game after game over
       return initialState;
+
+    case 'submit word':
+      // assumptions: this action attempts to complete the current level with currentWord.  button to fire this action is disabled unless wordblock is full.  currently reporting whether the word is valid via console but no gameplay implementation yet.
+      console.log(dictionary[state.currentWord]);
+      return { ...state, currentView: 'charm select' };
 
     default:
       return state;

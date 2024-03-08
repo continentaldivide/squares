@@ -32,6 +32,10 @@ interface resetGame {
   type: 'reset game';
 }
 
+interface submitWord {
+  type: 'submit word';
+}
+
 export type GameActionsType =
   | addAvailableSquare
   | resetAvailableSquares
@@ -39,4 +43,5 @@ export type GameActionsType =
   | deselectSquare
   | switchView
   | increaseLevel
-  | resetGame;
+  | resetGame
+  | submitWord;

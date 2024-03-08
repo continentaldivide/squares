@@ -40,9 +40,7 @@ export default function Squares() {
         </button>
         <button
           className="mt-2 p-2 rounded-lg bg-emerald-500 enabled:hover:bg-emerald-600 enabled:active:bg-emerald-700 disabled:opacity-25"
-          onClick={() =>
-            gameStateDispatch({ type: 'switch view', view: 'charm select' })
-          }
+          onClick={() => gameStateDispatch({ type: 'submit word' })}
           disabled={
             gameState.selectedSquares.length < gameState.wordBlockLength
           }
