@@ -114,6 +114,7 @@ const gameStateReducer: (
         currentWord: '',
         currentView: 'main game',
         levelNumber: newLevelNumber,
+        warningMessage: '',
       };
 
     case 'reset game':
@@ -121,9 +122,11 @@ const gameStateReducer: (
       return initialState;
 
     case 'submit word':
-      // assumptions: this action attempts to complete the current level with currentWord.  button to fire this action is disabled unless wordblock is full.  currently reporting whether the word is valid via console but no gameplay implementation yet.
-      console.log(dictionary[state.currentWord]);
-      return { ...state, currentView: 'charm select' };
+      // assumptions: this action attempts to complete the current level with currentWord.  button to fire this action is disabled unless wordblock is full.
+      const wordExists = !!dictionary[state.currentWord];
+      return wordExists
+        ? { ...state, currentView: 'charm select', warningMessage: '' }
+        : { ...state, warningMessage: 'word not found: ' + state.currentWord };
 
     default:
       return state;
@@ -138,6 +141,7 @@ const initialState: GameStateType = {
   currentWord: '',
   currentView: 'main game',
   levelNumber: 1,
+  warningMessage: '',
 };
 
 export function GameStateContextProvider({

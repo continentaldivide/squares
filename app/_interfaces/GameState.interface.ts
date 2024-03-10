@@ -8,4 +8,5 @@ export default interface GameStateType {
   currentWord: string;
   currentView: 'main game' | 'charm select';
   levelNumber: number;
+  warningMessage: string;
 }

@@ -48,6 +48,7 @@ export default function Squares() {
           <img src="check.svg"></img>
         </button>
       </div>
+      <p>{gameState.warningMessage}</p>
     </div>
   );
 }
