@@ -33,10 +33,16 @@ export default function Squares() {
       </div>
       <div className="flex gap-2">
         <button
-          className="mt-2 p-2 rounded-lg bg-gray-500 hover:bg-gray-600 active:bg-gray-700"
+          className="mt-2 p-2 rounded-lg bg-blue-500 hover:bg-blue-600 active:bg-blue-700"
+          onClick={() => gameStateDispatch({ type: 'shuffle squares' })}
+        >
+          <p className="text-sm text-wrap">shuffle</p>
+        </button>
+        <button
+          className="mt-2 p-2 rounded-lg bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-sm"
           onClick={() => gameStateDispatch({ type: 'reset squares' })}
         >
-          <img src="reroll.svg"></img>
+          new letters
         </button>
         <button
           className="mt-2 p-2 rounded-lg bg-emerald-500 enabled:hover:bg-emerald-600 enabled:active:bg-emerald-700 disabled:opacity-25 disabled:cursor-not-allowed"

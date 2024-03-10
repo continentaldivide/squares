@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer, ReactNode } from 'react';
 import GameStateType from '../_interfaces/GameState.interface';
 import { GameActionsType } from '../_interfaces/GameActions.interface';
 import untypedDictionary from '../../public/dictionary.json';
+import SquareType from '../_interfaces/Square.interface';
 
 const dictionary = untypedDictionary as Record<string, string>;
 
@@ -32,6 +33,29 @@ const gameStateReducer: (
         availableSquares: [],
         selectedSquares: [],
         currentWord: '',
+      };
+
+    case 'shuffle squares':
+      // assumptions: used to rearrange the order of availableSquares to aid in identifying possible words.  deselects any selected squares, sets all squares' opacity back to 100, and wipes out current word.
+      const shuffleSquares = (array: SquareType[]) => {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+        }
+      };
+      shuffleSquares(state.availableSquares);
+      return {
+        ...state,
+        availableSquares: state.availableSquares.map((square) => {
+          return {
+            ...square,
+            styles: { ...square.styles, opacity: 'opacity-100' },
+          };
+        }),
+        currentWord: '',
+        selectedSquares: [],
       };
 
     case 'select square': {

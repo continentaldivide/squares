@@ -9,6 +9,10 @@ interface resetAvailableSquares {
   type: 'reset squares';
 }
 
+interface shuffleAvailableSquares {
+  type: 'shuffle squares';
+}
+
 interface selectSquare {
   type: 'select square';
   squareIndex: number;
@@ -39,6 +43,7 @@ interface submitWord {
 export type GameActionsType =
   | addAvailableSquare
   | resetAvailableSquares
+  | shuffleAvailableSquares
   | selectSquare
   | deselectSquare
   | switchView
