@@ -1,7 +1,7 @@
 export default function useGenerateAlphabet() {
   // not really trying to make letter generation "scrabble-like" necessarily -- but for now, using scrabble tile frequency for convenience while I figure out how I want to handle letter rarity
   let alphabet = '';
-  const frequencyTable: any = {
+  const frequencyTable: Record<string, number> = {
     a: 9,
     b: 2,
     c: 2,
