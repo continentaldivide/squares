@@ -39,7 +39,7 @@ export default function Squares() {
           <img src="reroll.svg"></img>
         </button>
         <button
-          className="mt-2 p-2 rounded-lg bg-emerald-500 enabled:hover:bg-emerald-600 enabled:active:bg-emerald-700 disabled:opacity-25"
+          className="mt-2 p-2 rounded-lg bg-emerald-500 enabled:hover:bg-emerald-600 enabled:active:bg-emerald-700 disabled:opacity-25 disabled:cursor-not-allowed"
           onClick={() => gameStateDispatch({ type: 'submit word' })}
           disabled={
             gameState.selectedSquares.length < gameState.wordBlockLength

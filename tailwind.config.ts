@@ -9,13 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       animation: {
-        boxBounce: 'boxBounce .3s ease-out',
+        boxBounce: 'boxBounce .15s ease-out',
       },
       keyframes: {
         boxBounce: {
           '0%': { transform: 'translateY(0)' },
-          '30%': { transform: 'translateY(-10px)' },
-          '50%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
+          '100%': { transform: 'translateY(0)' },
         },
       },
     },
